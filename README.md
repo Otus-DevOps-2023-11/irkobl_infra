@@ -6,7 +6,7 @@ Getting acquainted with Yandex.Cloud infrastructure
     bastion_IP = 158.160.129.53
     someinternalhost_IP = 10.131.0.30
 
-# Сonnect through VPN
+## Сonnect through VPN
 
 ```sh
 cat << EOF > secret
