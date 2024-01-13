@@ -8,6 +8,6 @@
 ## Srart and run 
     
 ```sh
-        ./instance-create-script.sh
+    ./instance-create-script.sh
 ```
     
