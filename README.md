@@ -1,13 +1,13 @@
-## Home work 6 "Основные сервисы Yandex Cloud"
+# Home work 6 "Основные сервисы Yandex Cloud"
 
-# Scripts
+## Scripts
     - install_ruby.sh
     - install_mongodb.sh
     - deploy.sh
 
-# Srart and run 
+## Srart and run 
     
-    ```sh
+```sh
         ./instance-create-script.sh
-    ```
+```
     
