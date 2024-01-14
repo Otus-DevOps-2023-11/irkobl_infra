@@ -1,0 +1,22 @@
+#cloud-config
+  users:
+    - name: yc-user
+      groups: sudo
+      shell: /bin/bash
+      sudo: 'ALL=(ALL) NOPASSWD:ALL'
+      ssh-authorized-keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+cIW6rg535aemeM6ihUQ8GPSO62n0qDlEDxxEdrltyhMWxDZsYh2ZW9/o/5e4dcxNG7wxFXZfjWB2bfYHhnhnty+Dlay2JaiS1gtUHmgeCLr73BimnWHhlbxBRf673ISfD7jf1TkSJMgnQYU/TMfPE7OT56e20jhOZhFjwVsa6vfvyf79Z0PymtQIvdTxIqEo6r7Tq5mCsw4QhkWBFTQTBRa+u3F4r7iEwcA1W+9DyUXF4n5KeJ+Bv8Ug5tojEQNmPoZCnk7NQE5AJtLZMbggaFufjRRJNyFc+GOX9S69wYpDHKGlrwXP5m1bID+/plPeGgqjSuGLuA2nPU/XWFt+Y0gd+ARs26N6DOhPG83qsfonhTiLVD6c0sc0eLcRde95DcUXn0i/p1RyWlIcsxuM6vT0ywWMIDlIreJ8UoAWLNDplIsKiGc3k25gqMAiwUzc580xoKHX8y1OG1J3XsZlz0pAW79IsPeB++eg1oMyp9ViWPkTb0MTEvXDMaUtd8tR6V1XIsvs5QhRjhXjzLBdyFe2F/MSrDMS1xzCUHb2Oh6r4WqSgWVwxMzy/MWQTKbiQph9yP2C1/9iwL9mk8fTBXEb8aT1O43PV4HpweXy5v2RhUtRHtUMueGl7JnTD5uYivzBBJ8Z3GqB+7qiuYOpqTIFod9omo34Lh0CtMU2ow== appuser6
+  package_update: true
+  package_upgrade: true
+  packages:
+    - git    
+    - ruby-full 
+    - ruby-bundler 
+    - build-essential
+    - mongodb
+  runcmd:
+    - cd /home/yc-user
+    - git clone -b monolith https://github.com/express42/reddit.git    
+    - cd reddit && bundle install
+    - puma -d
+    - ps aux | grep puma
