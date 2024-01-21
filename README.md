@@ -1,17 +1,16 @@
-# Home work 6 "Основные сервисы Yandex Cloud"
+# Home work 7 "Сборка образов VM при помощи Packer"
 
 ## Connect:
-    testapp_IP = 158.160.34.215
+    testapp_IP = 58.160.142.197
     testapp_port = 9292
 
 ## Scripts
-    - install_ruby.sh
-    - install_mongodb.sh
-    - deploy.sh
+    - ./scripts/install_ruby.sh
+    - ./scripts/install_mongodb.sh    
 
 ## Srart and run 
     
 ```sh
-    ./instance-create-script.sh
+    packer build packer/ubuntu16.json
 ```
     
