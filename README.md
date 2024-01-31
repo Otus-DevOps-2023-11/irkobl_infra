@@ -1,4 +1,4 @@
-# Home work 7 "Сборка образов VM при помощи Packer"
+# Home work 8 "Знакомство с Terraform "
 
 ## Connect:
     testapp_IP = 158.160.55.210
