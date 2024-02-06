@@ -2,14 +2,14 @@
     "builders": [
         {
             "type": "yandex",
-            "service_account_key_file": "key.json",           
+            "service_account_key_file": "key.json",
             "folder_id": "b1g8ojge2nm3e9uc0fgs",
             "source_image_family": "ubuntu-1604-lts",
             "image_name": "reddit-app-{{timestamp}}",
             "image_family": "app-base",
             "ssh_username": "ubuntu",
             "platform_id": "standard-v1",
-            "use_ipv4_nat": true           
+            "use_ipv4_nat": true
         }
     ],
     "provisioners": [

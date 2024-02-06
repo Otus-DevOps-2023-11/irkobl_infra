@@ -38,7 +38,7 @@ provider "yandex" {
 #       image_id = var.image_id
 #     }
 #   }  
-  
+
 #   network_interface {
 #     subnet_id = yandex_vpc_subnet.app-subnet.id
 #     nat = true
