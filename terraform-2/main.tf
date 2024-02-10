@@ -11,18 +11,34 @@ provider "yandex" {
   zone = "ru-central1-a"
 }
 
-# resource "yandex_vpc_network" "app-network" {  
-#   name = "reddit-app-network"
-#   description = "otus-network"
-# }
+resource "yandex_vpc_network" "app-network" {  
+  name = "reddit-app-network"
+  description = "otus-network"
+}
 
-# resource "yandex_vpc_subnet" "app-subnet" {
-#   name = "reddit-app-subnet"
-#   zone = "ru-central1-a"
-#   description = "local-network"
-#   network_id = "${yandex_vpc_network.app-network.id}"
-#   v4_cidr_blocks = [ "192.168.10.0/24" ]
-# }
+resource "yandex_vpc_subnet" "app-subnet" {
+  name = "reddit-app-subnet"
+  zone = "ru-central1-a"
+  description = "local-network"
+  network_id = "${yandex_vpc_network.app-network.id}"
+  v4_cidr_blocks = [ "192.168.10.0/24" ]
+}
+
+module "app" {
+  source          = "./modules/app"
+  public_key_path = var.public_key_path
+  app_disk_image  = var.app_disk_image
+  private_key     = var.private_key
+  # subnet_id       = var.subnet_id  
+}
+
+module "db" {
+  source          = "./modules/db"
+  public_key_path = var.public_key_path
+  db_disk_image   = var.db_disk_image
+  private_key     = var.private_key
+  # subnet_id       = var.subnet_id
+}
 
 # resource "yandex_compute_instance" "otus" {
 #   name = "otus-redit"  
@@ -46,14 +62,6 @@ provider "yandex" {
 
 #   metadata = {
 #     ssh-keys = "ubuntu:${file(var.public_key_path)}"
-#   }
-
-#   connection {
-#     type  = "ssh"
-#     host  = yandex_vpc_subnet.app-subnet.id
-#     user  = "ubuntu"
-#     agent = false    
-#     private_key = file(var.private_key)
 #   }
 
 #   provisioner "file" {
