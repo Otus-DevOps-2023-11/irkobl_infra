@@ -4,4 +4,4 @@
 *.tfvars
 .terraform/
 key.json
-packer/key.json
+
