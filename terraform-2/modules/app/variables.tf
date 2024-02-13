@@ -9,5 +9,5 @@ variable "app_disk_image" {
   default     = "reddit-app-base"
 }
 variable "subnet_id" {
-  description = "Inet"  
+  description = "Inet"
 }
