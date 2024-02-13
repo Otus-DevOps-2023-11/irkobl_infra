@@ -3,5 +3,3 @@
 *.tfstate.backup
 *.tfvars
 .terraform/
-key.json
-
