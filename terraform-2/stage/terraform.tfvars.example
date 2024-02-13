@@ -1,0 +1,5 @@
+public_key_path = "~/.ssh/appuser.pub"
+private_key     = "~/.ssh/appuser"
+app_disk_image  = "fd87aqco6cc4a3ng76il"
+db_disk_image   = "fd8nv4esp6qq0pobk2o1"
+subnet_id = "e9bvr8c01edminp68t86"
