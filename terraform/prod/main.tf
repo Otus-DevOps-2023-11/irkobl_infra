@@ -13,6 +13,8 @@ terraform {
     bucket = "mystate"
     region = "ru-central1-a"
     key    = "terraform.tfstate"
+    access_key = "xxxx"
+    secret_key = "xxxx"
 
 
     skip_region_validation      = true
