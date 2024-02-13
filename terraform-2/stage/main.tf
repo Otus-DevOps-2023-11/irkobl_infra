@@ -4,7 +4,7 @@ terraform {
       source = "yandex-cloud/yandex"
     }
   }
-  # required_version = ">= 0.13"
+  required_version = ">= 0.13"
 
   backend "s3" {
     endpoints = {
@@ -23,9 +23,9 @@ terraform {
   }
 }
 
-provider "yandex" {
-  zone = "ru-central1-a"
-}
+# provider "yandex" {
+#   zone = "ru-central1-a"
+# }
 
 module "app" {
   source          = "../modules/app"
