@@ -1,10 +1,15 @@
-# Home work 8 "Знакомство с Terraform "
+# Home work 9 "Принципы организации инфраструктурного кода и работа над инфраструктурой в команде на примере Terraform"
 
-## Connect:
-    testapp_IP = 158.160.55.210
-    testapp_port = 9292
+## Accomplished:
+    - Основное задание декомпозировано (Prod & Stage)
+    - Задание *
 
-## Scripts
-    - ./scripts/install_ruby.sh
-    - ./scripts/install_mongodb.sh
+    terraform init -backend-config="access_key=$ACCESS_KEY" -backend-config="secret_key=$SECRET_KEY"
+    Terraform has been successfully initialized!
 
+## Modules
+    - irkobl_infra/terraform-2/modules/app
+    - irkobl_infra/terraform-2/modules/db
+
+## Access "Yandex Object Storage"
+    Задание под звездочкой необходимо добавить нужные права доступа к бакету mystate в яндекс консоли
