@@ -1,15 +1,15 @@
 #! /bin/bash
  
 function helps { 
-    echo 'Use dynamo.sh [ STRING name instance ] [ OPTIONS ... ]
+    echo 'Use ./generate_json.sh [ STRING name instance. Example: "reddit-MyPrefixOne reddit-MyPrefixTwo --list"  ] [ OPTIONS ... ]
         --list - create file json with name instance
         --help - short message help' 
 }
  
 function wip { 
-    wip=`yc compute instance list | grep $1 | cut -d'|' -f6` 
+    wip=`yc compute instance list | grep $1 | cut -d'|' -f6`
     wip=${wip// /}
-    echo $wip 
+    echo $wip
 }
  
 function json {
@@ -34,16 +34,17 @@ function json {
 }
  
 if [ $# -eq 0 ] || [ $# -gt 3 ]; then
-    echo -e 'Должно быть максимум два параметра \n'
+    echo -e 'Должно быть три параметра \n'
     helps 
-elif [ $# -eq 1 ]; then
+elif [ $# -gt 0 ] && [ $# -lt 3 ]; then
     if [ $1 == "--help" ]; then
         helps
-    elif [ $# -eq 2 ]; then
-        helps
-    elif [[ $1 =~ ^[a-zA-Z] ]] && [[ $1 =~ ^[a-zA-Z] ]]; then
+    elif [[ $1 =~ ^[a-zA-Z] ]] || [[ $2 =~ ^[a-zA-Z] ]]; then
         echo $(wip $1)
         echo $(wip $2)
+    elif [ $# -eq 2 ]; then
+        echo -e 'Параметры не совпадают \n'
+        helps
     else
         helps
     fi
