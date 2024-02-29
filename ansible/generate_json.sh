@@ -41,7 +41,9 @@ elif [ $# -gt 0 ] && [ $# -lt 3 ]; then
         helps
     elif [[ $1 =~ ^[a-zA-Z] ]] || [[ $2 =~ ^[a-zA-Z] ]]; then
         echo $(wip $1)
-        echo $(wip $2)
+        echo $(wip $2) 
+        suff=$(echo $1 | sed 's/.*-//g')       
+        echo $suff
     elif [ $# -eq 2 ]; then
         echo -e 'Параметры не совпадают \n'
         helps
