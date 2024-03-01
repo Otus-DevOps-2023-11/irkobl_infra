@@ -9,24 +9,31 @@ function helps {
 function wip { 
     wip=`yc compute instance list | grep $1 | cut -d'|' -f6`
     wip=${wip// /}
-    echo $wip
+    suff=$(echo $1 | sed 's/.*-//g')
+    arr=( $suff $suff"server" $wip )
+    echo ${arr[*]}
 }
  
-function json {
+function json {    
+    arr=$(wip $1)    
+    first=($arr)
+    arr=$(wip $2)
+    second=($arr)   
+
     echo -e '{\n' \
-            '   "app": {\n' \
+            '   '\"${first[0]}\"': {\n' \
             '       "hosts": {\n' \
-            '           "appserver": {\n' \
+            '           '\"${first[1]}\"': {\n' \
             '               "ansible_user": "ubuntu",\n' \
-            '               "ansible_host": '\"$(wip $1)\"'\n' \
+            '               "ansible_host": '\"${first[2]}\"'\n' \
             '           }\n' \
             '       }\n' \
             '   },\n' \
-            '   "db": {\n' \
+            '   '\"${second[0]}\"': {\n' \
             '       "hosts": {\n' \
-            '           "dbserver": {\n' \
+            '           '\"${second[1]}\"': {\n' \
             '               "ansible_user": "appuser",\n' \
-            '               "ansible_host": '\"$(wip $2)\"'\n' \
+            '               "ansible_host": '\"${second[2]}\"'\n' \
             '           }\n' \
             '       }\n' \
             '   }\n' \
@@ -39,14 +46,15 @@ if [ $# -eq 0 ] || [ $# -gt 3 ]; then
 elif [ $# -gt 0 ] && [ $# -lt 3 ]; then
     if [ $1 == "--help" ]; then
         helps
-    elif [[ $1 =~ ^[a-zA-Z] ]] || [[ $2 =~ ^[a-zA-Z] ]]; then
-        echo $(wip $1)
-        echo $(wip $2) 
-        suff=$(echo $1 | sed 's/.*-//g')       
-        echo $suff
     elif [ $# -eq 2 ]; then
-        echo -e 'Параметры не совпадают \n'
+        echo -e 'Недостаточно аргументов \n'
+        echo $(wip $1)
+        echo $(wip $2)
         helps
+    elif [[ $1 =~ ^[a-zA-Z] ]]; then
+        echo -e 'Недостаточно аргументов \n'
+        echo $(wip $1) 
+        helps       
     else
         helps
     fi
