@@ -17,7 +17,7 @@
 
 ## Integrate with your tools
 
-- [Set up project integrations](git@github.com:Otus-DevOps-2023-11/irkobl_infra.git)
+- [ ] [Set up project integrations](git@github.com:Otus-DevOps-2023-11/irkobl_infra.git)
 
 ```bash
 git clone git@github.com:Otus-DevOps-2023-11/irkobl_infra.git
