@@ -1,24 +1,24 @@
 #! /bin/bash
- 
-function helps { 
+
+function helps {
     echo 'Use ./generate_json.sh [ STRING name instance. Example: "reddit-MyPrefixOne reddit-MyPrefixTwo --list"  ] [ OPTIONS ... ]
         --list - create file json with name instance
-        --help - short message help' 
+        --help - short message help'
 }
- 
-function wip { 
+
+function wip {
     wip=`yc compute instance list | grep $1 | cut -d'|' -f6`
     wip=${wip// /}
     suff=$(echo $1 | sed 's/.*-//g')
     arr=( $suff $suff"server" $wip )
     echo ${arr[*]}
 }
- 
-function json {    
-    arr=$(wip $1)    
+
+function json {
+    arr=$(wip $1)
     first=($arr)
     arr=$(wip $2)
-    second=($arr)   
+    second=($arr)
 
     echo -e '{\n' \
             '   '\"${first[0]}\"': {\n' \
@@ -39,10 +39,10 @@ function json {
             '   }\n' \
             '}' > inventory.json
 }
- 
+
 if [ $# -eq 0 ] || [ $# -gt 3 ]; then
     echo -e 'Должно быть три параметра \n'
-    helps 
+    helps
 elif [ $# -gt 0 ] && [ $# -lt 3 ]; then
     if [ $1 == "--help" ]; then
         helps
@@ -53,8 +53,8 @@ elif [ $# -gt 0 ] && [ $# -lt 3 ]; then
         helps
     elif [[ $1 =~ ^[a-zA-Z] ]]; then
         echo -e 'Недостаточно аргументов \n'
-        echo $(wip $1) 
-        helps       
+        echo $(wip $1)
+        helps
     else
         helps
     fi
