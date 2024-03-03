@@ -1,0 +1,11 @@
+app:
+  hosts:
+    appserver:
+      ansible_user: ubuntu
+      ansible_host: 51.250.89.202
+
+db:
+  hosts:
+    dbserver:
+      ansible_user: appuser
+      ansible_host: 158.160.32.126
