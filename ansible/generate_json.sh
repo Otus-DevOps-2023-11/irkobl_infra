@@ -10,7 +10,12 @@ function wip {
     wip=`yc compute instance list | grep $1 | cut -d'|' -f6`
     wip=${wip// /}
     suff=$(echo $1 | sed 's/.*-//g')
-    arr=( $suff $suff"server" $wip )
+    if [ $suff == 'db' ]; then 
+        user='appuser'
+    else 
+        user='ubuntu'
+    fi
+    arr=( $suff $suff"server" $wip $user)
     echo ${arr[*]}
 }
 
@@ -24,7 +29,7 @@ function json {
             '   '\"${first[0]}\"': {\n' \
             '       "hosts": {\n' \
             '           '\"${first[1]}\"': {\n' \
-            '               "ansible_user": "ubuntu",\n' \
+            '               "ansible_user": '\"${first[3]}\"',\n' \
             '               "ansible_host": '\"${first[2]}\"'\n' \
             '           }\n' \
             '       }\n' \
@@ -32,7 +37,7 @@ function json {
             '   '\"${second[0]}\"': {\n' \
             '       "hosts": {\n' \
             '           '\"${second[1]}\"': {\n' \
-            '               "ansible_user": "appuser",\n' \
+            '               "ansible_user": '\"${second[3]}\"',\n' \
             '               "ansible_host": '\"${second[2]}\"'\n' \
             '           }\n' \
             '       }\n' \
