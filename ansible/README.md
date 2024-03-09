@@ -58,6 +58,3 @@ ansible app -m ping
 ```bash
 ansible-playbook site.yml
 ```
-
-
-
