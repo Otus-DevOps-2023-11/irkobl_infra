@@ -3,7 +3,7 @@
   hosts: app
   become: true
   vars:
-   db_host: 10.128.0.4
+   db_host: 10.128.0.17
   
   roles:
     - app

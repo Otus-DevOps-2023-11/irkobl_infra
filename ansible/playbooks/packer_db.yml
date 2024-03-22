@@ -25,5 +25,5 @@
   # Включаем сервис
   - name: Configure service supervisor
     systemd:
-      name: mongod
+      name: mongodb
       enabled: yes
