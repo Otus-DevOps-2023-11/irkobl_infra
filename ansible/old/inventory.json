@@ -3,7 +3,7 @@
         "hosts": {
             "appserver": {
                 "ansible_user": "ubuntu",
-                "ansible_host": "51.250.89.202"
+                "ansible_host": "51.250.76.139"
             }
         }
     },
