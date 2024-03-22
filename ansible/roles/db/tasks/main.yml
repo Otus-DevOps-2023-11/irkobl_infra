@@ -5,8 +5,7 @@
     src: mongod.conf.j2
     dest: /etc/mongod.conf
     mode: 0644
-    # notify: 
-    #   - restart mongod
+    notify: restart mongod
 
 # tasks file for app
 - name: Show info about the env this host belongs to
