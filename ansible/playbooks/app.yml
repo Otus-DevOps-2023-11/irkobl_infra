@@ -7,7 +7,7 @@
   
   roles:
     - app
-    - jdauphant.nginx
+    # - jdauphant.nginx
 
   # tasks:
   #   - name: Add unit file for Puma
