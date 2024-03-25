@@ -5,6 +5,3 @@
 .terraform/
 *.retry
 jdauphant.nginx
-environments/prod/requirements.yml
-environments/stage/requirements.yml
-
