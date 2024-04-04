@@ -6,3 +6,10 @@
 *.retry
 jdauphant.nginx
 environments/stage/requirements.yml
+# Vagrant & molecule
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
