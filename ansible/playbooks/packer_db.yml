@@ -7,7 +7,7 @@
   # Добавим ключ репозитория для последующей работы с ним
   - name: Add APT key
     apt_key:
-      id: EA312927
+      id: 160D26BB1785BA38
       keyserver: keyserver.ubuntu.com
 
   # Подключаем репозиторий с пакетами mongodb
@@ -25,5 +25,5 @@
   # Включаем сервис
   - name: Configure service supervisor
     systemd:
-      name: mongodb
+      name: mongod
       enabled: yes

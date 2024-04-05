@@ -6,16 +6,10 @@
   
   tasks:
     - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-      # raw: |
-      #   apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
-      #   cd /tmp/
-      #   wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz
-      #   tar -xf Python-3.12.0.tgz
-      #   cd Python-3.12.*/
-      #   ./configure --enable-optimizations
-      #   make -j 2
-      #   make altinstall        
-      #   ln -sf /usr/local/bin/python3.12 /usr/bin/python
-      #   ln -sf /usr/local/bin/python3.12 /usr/bin/python3
+      # raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      raw: |
+        apt -y update
+        apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev gnupg2 gnupg
+        ln -sf /usr/bin/python3.8 /usr/bin/python
+        ln -sf /usr/bin/python3.8 /usr/bin/python3
       changed_when: False

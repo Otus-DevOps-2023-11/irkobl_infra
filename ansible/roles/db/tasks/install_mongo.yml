@@ -1,25 +1,46 @@
 
 ---
-- name: Add APT key
-  apt_key:
-    id: EA312927
-    keyserver: keyserver.ubuntu.com
+- name: Install mongo
+  block:
+    # Добавим ключ репозитория для последующей работы с ним
+    - name: Add APT key
+      apt_key:
+        id: 160D26BB1785BA38
+        keyserver: keyserver.ubuntu.com
 
-# Подключаем репозиторий с пакетами mongodb
-- name: Add APT repository
-  apt_repository:
-    repo: deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse
-    state: present
+    - name: Add APT repository
+      apt_repository:
+        repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse
+        state: present
 
-# Выполним установку пакетаa
-- name: Install mongodb package
-  apt:
-    name: mongodb-org
-    state: present
-
-# Включаем сервис
-- name: Configure service supervisor
-  systemd:
-    name: mongodb
-    enabled: yes
-  tags: install
+    # Выполним установку пакетаa
+    - name: Install mongodb package
+      apt:
+        name: mongodb-org
+        state: present
+    
+    # Добавим права
+    - name: Add priveleges
+      file:
+        path: "{{ item }}"
+        owner: mongodb
+        group: mongodb
+      with_items:
+        - /var/lib/mongodb
+        - /tmp/mongodb-27017.sock
+    
+    # Удаляем строку
+    - name: Correct mongod.service
+      lineinfile:
+        path: /lib/systemd/system/mongod.service
+        state: absent
+        search_string: 'Environment="MONGODB_CONFIG_OVERRIDE_NOFORK=1'
+      
+    # Включаем сервис
+    - name: Configure service supervisor
+      systemd:
+        name: mongod
+        enabled: yes
+      tags: install
+  become: true
+  
