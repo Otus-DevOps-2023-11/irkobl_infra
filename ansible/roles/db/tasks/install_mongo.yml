@@ -40,7 +40,7 @@
     - name: Configure service supervisor
       systemd:
         name: mongod
+        daemon_reload: true
         enabled: yes
       tags: install
   become: true
-  
