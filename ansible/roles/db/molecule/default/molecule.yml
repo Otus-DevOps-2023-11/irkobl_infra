@@ -1,0 +1,28 @@
+---
+driver:
+  name: vagrant
+  provider: 
+    name: libvirt
+    type: libvirt
+    options:
+      memory: 512
+      cpus: 2
+lint: |
+  set -e
+  yamllint . -c .yamllint
+  ansible-lint -c .ansible-lint
+platforms:
+  - name: instance
+    # you might want to add your own variables here based on what provisioning
+    # you are doing like:
+    # image: quay.io/centos/centos:stream8
+    box: peru/ubuntu-20.04-server-amd64
+    interfaces:
+      - auto_config: true
+        network_name: private_network
+        type: static
+        ip: 10.10.10.10
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
