@@ -1,4 +1,0 @@
-[app]
-appserver ansible_host=51.250.89.202 ansible_user=ubuntu
-[db]
-dbserver ansible_host=158.160.32.126 ansible_user=appuser
